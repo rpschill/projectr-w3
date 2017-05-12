@@ -3,18 +3,36 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { AppComponent } from './app.component';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+import { environment } from '../environments/environment';
+
+import { AppRoutingModule } from './app-routing.module';
+
+import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
+
+import { afAuth } from './providers/afAuth';
+
+@NgModule( {
+    declarations: [
+        AppComponent,
+        LoginComponent
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpModule,
+        AppRoutingModule,
+        AngularFireModule.initializeApp( environment.firebase ),
+        AngularFireAuthModule,
+        AngularFireDatabaseModule
+    ],
+    providers: [
+        afAuth
+    ],
+    bootstrap: [ AppComponent ]
+} )
 export class AppModule { }
