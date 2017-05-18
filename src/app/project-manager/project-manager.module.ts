@@ -2,9 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
+import { LayoutService } from './providers/layout.service';
+
 import { ProjectManagerWrapperComponent } from './project-manager-wrapper/project-manager-wrapper.component';
 
 import { ProjectManagerRoutingModule } from './project-manager-routing.module';
+import { SidebarFoldersComponent } from './sidebar-folders/sidebar-folders.component';
+import { TodayComponent } from './today/today.component';
+import { InboxComponent } from './inbox/inbox.component';
+import { ProjectComponent } from './project/project.component';
+import { FolderComponent } from './folder/folder.component';
 
 @NgModule( {
     imports: [
@@ -12,7 +19,15 @@ import { ProjectManagerRoutingModule } from './project-manager-routing.module';
         ProjectManagerRoutingModule
     ],
     declarations: [
-        ProjectManagerWrapperComponent
+        ProjectManagerWrapperComponent,
+        SidebarFoldersComponent,
+        TodayComponent,
+        InboxComponent,
+        ProjectComponent,
+        FolderComponent,
+    ],
+    providers: [
+        LayoutService
     ]
 } )
 export class ProjectManagerModule { }

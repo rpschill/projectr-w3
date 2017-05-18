@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 
 import { afAuth } from './providers/afAuth';
+import { afFolders } from './providers/afFolders.service';
 
 @NgModule( {
     declarations: [
@@ -31,7 +32,8 @@ import { afAuth } from './providers/afAuth';
         AngularFireDatabaseModule
     ],
     providers: [
-        afAuth
+        afAuth,
+        afFolders
     ],
     bootstrap: [ AppComponent ]
 } )

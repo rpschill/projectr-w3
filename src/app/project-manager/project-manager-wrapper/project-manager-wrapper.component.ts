@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LayoutService } from '../providers/layout.service';
 
 @Component( {
     templateUrl: './project-manager-wrapper.component.html',
@@ -6,19 +7,37 @@ import { Component, OnInit } from '@angular/core';
 } )
 export class ProjectManagerWrapperComponent implements OnInit {
 
-    private sidebarOpen: Boolean = false;
+    sidebarOpen: boolean;
 
-    constructor() { }
+    constructor( private sidebar: LayoutService ) { }
 
-    w3_open() {
-        this.sidebarOpen = true;
+    openResponsiveNavbar() {
+        if ( document.getElementById( "global-sidebar" ).style.display === "block" ) {
+            document.getElementById( "global-sidebar" ).style.display = "none";
+        }
+        else {
+            document.getElementById( "global-sidebar" ).style.display = "block";
+        }
     }
 
-    w3_close() {
-        this.sidebarOpen = false;
+    closeResponsiveNavbar() {
+        document.getElementById( "global-sidebar" ).style.display = "none";
+    }
+
+    getSidebarVisibility(): boolean {
+        return this.sidebar.isSidebarVisible;
+    }
+
+    toggleSidebar() {
+        this.sidebar.toggleSidebarVisibility();
+        console.log( this.sidebarOpen );
     }
 
     ngOnInit() {
+        this.sidebar.sidebarVisibilityChange
+            .subscribe( value => {
+                this.sidebarOpen = value;
+            } );
     }
 
 }

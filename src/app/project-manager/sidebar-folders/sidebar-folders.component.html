@@ -1,0 +1,32 @@
+<div class="w3-row w3-border-bottom w3-margin-bottom">
+    <div class="w3-col s9">
+        <h3 class="w3-margin-left">Folders</h3>
+    </div>
+    <div class="w3-col s3">
+        <button class="w3-button w3-xlarge" (click)="toggleSidebar()">&times;</button>
+    </div>
+</div>
+
+<div *ngFor="let folder of folderAndProjects" class="w3-bar-item" style="padding: 0 16px 0 16px;">
+    <button class="w3-block w3-button w3-left-align" (click)="folder.expanded = !folder.expanded">
+        <i *ngIf="!folder.expanded" class="fa fa-folder-o"></i>
+        <i *ngIf="folder.expanded" class="fa fa-folder-open-o"></i>
+        {{ folder?.title }}
+        <i *ngIf="!folder.expanded" class="fa fa-caret-down"></i>
+        <i *ngIf="folder.expanded" class="fa fa-caret-up"></i>
+    </button>
+    <div *ngIf="folder.expanded" class="w3-margin-left w3-margin-bottom">
+        <a *ngFor="let project of folder.projectDetails" class="w3-button w3-bar-item">
+            <i class="fa fa-file-text-o"></i>
+            {{ project?.details?.title }}
+        </a>
+    </div>
+</div>
+
+<hr class="w3-border-bottom">
+
+<div class="w3-margin w3-right">
+    <a href="#" class="w3-button w3-2017-shaded-spruce">Go to Folders <i class="fa fa-long-arrow-right"></i></a>
+</div>
+
+
