@@ -12,6 +12,8 @@ import { TodayComponent } from './today/today.component';
 import { InboxComponent } from './inbox/inbox.component';
 import { ProjectComponent } from './project/project.component';
 import { FolderComponent } from './folder/folder.component';
+import { ContentEditableDirective } from '../content-editable.directive';
+
 
 @NgModule( {
     imports: [
@@ -25,6 +27,7 @@ import { FolderComponent } from './folder/folder.component';
         InboxComponent,
         ProjectComponent,
         FolderComponent,
+        ContentEditableDirective
     ],
     providers: [
         LayoutService

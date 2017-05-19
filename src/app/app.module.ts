@@ -16,11 +16,12 @@ import { LoginComponent } from './login/login.component';
 
 import { afAuth } from './providers/afAuth';
 import { afFolders } from './providers/afFolders.service';
+import { afTasksService } from './providers/afTasks.service';
 
 @NgModule( {
     declarations: [
         AppComponent,
-        LoginComponent
+        LoginComponent,
     ],
     imports: [
         BrowserModule,
@@ -33,7 +34,8 @@ import { afFolders } from './providers/afFolders.service';
     ],
     providers: [
         afAuth,
-        afFolders
+        afFolders,
+        afTasksService
     ],
     bootstrap: [ AppComponent ]
 } )
