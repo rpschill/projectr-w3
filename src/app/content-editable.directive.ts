@@ -46,7 +46,7 @@ export class ContentEditableDirective implements OnInit, OnChanges {
     }
 
     ngOnInit() {
-        if(this.ceModel !== '') {
+        if ( this.ceModel !== '' ) {
             this.elRef.nativeElement.innerText = this.ceModel;
             this.setPlaceholderColor( false );
         }
