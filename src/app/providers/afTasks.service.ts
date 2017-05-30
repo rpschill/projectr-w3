@@ -11,30 +11,24 @@ import { OfflineService } from './offline.service';
 export class afTasksService {
 
     public inboxTasks: FirebaseListObservable<any[]>;
-    private isOnline: Boolean;
 
     constructor( public afTasks: AngularFireDatabase, private offline: OfflineService ) { }
     
     getInboxTasks() {
-        if ( this.isOnline ) {
-            this.inboxTasks = this.afTasks.list( '/inbox', {
-                query: {
-                    orderByChild: 'createdAt'
-                }
-            } );
+        this.inboxTasks = this.afTasks.list( '/inbox', {
+            query: {
+                orderByChild: 'createdAt'
+            }
+        } );
 
-            this.inboxTasks
-                .map(( tasks ) => {
-                    for ( let task of tasks ) {
-                        if ( task.title === '' ) {
+        this.inboxTasks
+            .map(( tasks ) => {
+                for ( let task of tasks ) {
+                    if ( task.title === '' ) {
 
-                        }
                     }
-                } )
-        }
-        else {
-            this.inboxTasks = []
-        }
+                }
+            } )
 
         return this.inboxTasks;
     }

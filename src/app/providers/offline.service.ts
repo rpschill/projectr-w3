@@ -1,18 +1,22 @@
 import { Injectable, HostListener } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-    
+import * as firebase from 'firebase/app';
 
 @Injectable()
 export class OfflineService {
 
-    private isOnline: Boolean;
+    private isConnected: Boolean;
 
-    constructor() { }
+    constructor( ) {}
 
-    @HostListener('onOffline', ['$event'])
-    checkOnline($event: any) {
-        this.isOnline = window.navigator.onLine;
-        return this.isOnline;
+    watchConnection() {
+        let connectedRef = firebase.database().ref( '.info/connected' );
+        connectedRef
+            .on( 'value', function ( snap ) {
+                if ( snap.val() === true ) {
+                    this.isConnected = true;
+            }
+        })
     }
 
 }

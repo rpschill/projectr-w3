@@ -25,7 +25,10 @@
             <ul class="w3-ul w3-hoverable w3-card-2">
                 <li class="w3-display-container" *ngFor="let task of allTasks | async">
                     <input class="w3-check w3-display-left w3-margin-left" type="checkbox">
-                    <span class="w3-padding w3-margin-left" (keyup.enter)="createNewTask()" [(ceModel)]="task.title" [ceDefault]="defaultText" (ceChange)="onTaskChange($event, task)" (keyup)="onKey($event)" placeholder="defaultText" contenteditable>{{ task.title }}</span>
+                    <span class="w3-padding w3-margin-left" (click)="task.editMode = !task.editMode" *ngIf="task.editMode; else editTask" placeholder="Enter a new task">{{ task?.title }}</span>
+                    <ng-template #editTask>Edit Mode
+                        <!--<input type="text" class="w3-padding w3-margin-left" (keyup.enter)="createNewTask()" (keyup)="onKey($event)" [(ngModel)]="task.title">-->
+                    </ng-template>
                     <span class="w3-button w3-display-right" onclick="this.parentElement.style.display='none'">&times;</span>
                 </li>
             </ul>

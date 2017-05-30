@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { afTasksService } from '../../providers/afTasks.service';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
