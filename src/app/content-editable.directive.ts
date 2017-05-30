@@ -1,4 +1,14 @@
-import { Directive, HostListener, Input, ElementRef, OnInit, OnChanges, SimpleChanges, EventEmitter, Output } from '@angular/core';
+import {
+    Directive,
+    HostListener,
+    Input,
+    ElementRef,
+    OnInit, 
+    OnChanges, 
+    SimpleChanges,
+    EventEmitter,
+    Output
+} from '@angular/core';
 
 @Directive( {
     selector: '[ceModel]'
@@ -46,14 +56,18 @@ export class ContentEditableDirective implements OnInit, OnChanges {
     }
 
     ngOnInit() {
-        if ( this.ceModel !== '' ) {
+        if ( this.ceModel === '' ) {
+            this.ceModel = this.ceDefault;
+            this.elRef.nativeElement.innerText = this.ceModel;
+            this.setPlaceholderColor( true );
+        }
+        else {
             this.elRef.nativeElement.innerText = this.ceModel;
             this.setPlaceholderColor( false );
         }
-        else {
-            this.elRef.nativeElement.innerText = this.ceDefault;
-            this.setPlaceholderColor( true );
-        }
+
+        console.log( 'ceModel: ', this.ceModel );
+        console.log( 'innerText: ', this.elRef.nativeElement.innerText );
         
     }
 

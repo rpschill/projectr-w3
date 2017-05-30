@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { OfflineService } from './providers/offline.service';
 
 @Component({
   selector: 'pr-root',
@@ -6,4 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+    
+
+    constructor( private offline: OfflineService ) {
+        
+    }
 }

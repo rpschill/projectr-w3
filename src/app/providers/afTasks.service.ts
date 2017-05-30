@@ -5,19 +5,37 @@ import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
+import { OfflineService } from './offline.service';
+
 @Injectable()
 export class afTasksService {
 
     public inboxTasks: FirebaseListObservable<any[]>;
+    private isOnline: Boolean;
 
-    constructor( public afTasks: AngularFireDatabase ) { }
+    constructor( public afTasks: AngularFireDatabase, private offline: OfflineService ) { }
     
     getInboxTasks() {
-        this.inboxTasks = this.afTasks.list( '/inbox', {
-            query: {
-                orderByChild: 'createdAt'
-            }
-        } );
+        if ( this.isOnline ) {
+            this.inboxTasks = this.afTasks.list( '/inbox', {
+                query: {
+                    orderByChild: 'createdAt'
+                }
+            } );
+
+            this.inboxTasks
+                .map(( tasks ) => {
+                    for ( let task of tasks ) {
+                        if ( task.title === '' ) {
+
+                        }
+                    }
+                } )
+        }
+        else {
+            this.inboxTasks = []
+        }
+
         return this.inboxTasks;
     }
 

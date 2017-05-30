@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { afAuth } from './providers/afAuth';
 import { afFolders } from './providers/afFolders.service';
 import { afTasksService } from './providers/afTasks.service';
+import { OfflineService } from './providers/offline.service';
 
 @NgModule( {
     declarations: [
@@ -35,7 +36,8 @@ import { afTasksService } from './providers/afTasks.service';
     providers: [
         afAuth,
         afFolders,
-        afTasksService
+        afTasksService,
+        OfflineService
     ],
     bootstrap: [ AppComponent ]
 } )
